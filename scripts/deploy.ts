@@ -1,16 +1,11 @@
 import { ethers } from "hardhat";
 
 async function main() {
-  
-  
+    const DepositWithdraw = await ethers.deployContract("DepositWithdrawFactory");
 
-  const DepositWithdraw = await ethers.deployContract("DepositWithdrawFactory");
+    await DepositWithdraw.waitForDeployment();
 
-  await DepositWithdraw.waitForDeployment();
-
-  console.log(
-    `DepositWithdraw deployed to ${DepositWithdraw.target}`
-  );
+  console.log(`DepositWithdraw deployed to ${DepositWithdraw.target}`);
 }
 
 // We recommend this pattern to be able to use async/await everywhere

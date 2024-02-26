@@ -1,20 +1,21 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.20;
 
-import "./DepositWithdraw.sol";
+import "./DepositWithdraw.sol"; // Corrected import statement to match the file name
 
 contract DepositWithdrawFactory {
-    DepositWithdraw[] public contracts;
+    DepositWithdraws[] public contracts;
+    event ContractCreated(address contractAddress);
 
-    event DepositWithdrawCreated(address contractAddress);
-
-    function createContract() public {
-        DepositWithdraw newContract = new DepositWithdraw();
+    function createContract() external {
+        DepositWithdraws newContract = new DepositWithdraws();
         contracts.push(newContract);
-        emit DepositWithdrawCreated(address(newContract));
+        emit ContractCreated(address(newContract));
     }
 
-    function getDepositWithdraw() public view returns (DepositWithdraw[] memory) {
+    function getDeployedContracts() external view returns (DepositWithdraws[] memory) {
         return contracts;
     }
 }
+
+
